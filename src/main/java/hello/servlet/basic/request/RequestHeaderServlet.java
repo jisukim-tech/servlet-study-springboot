@@ -11,8 +11,10 @@ import java.io.IOException;
 public class RequestHeaderServlet extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         printStartLine(request);
+        printHeaders(request);
     }
 
     private void printStartLine(HttpServletRequest request) {
@@ -26,4 +28,14 @@ public class RequestHeaderServlet extends HttpServlet {
         System.out.println("request.isSecure() = " + request.isSecure()); // https?
         System.out.println("--- REQUEST-LINE - end ---\n");
     }
+
+    private void printHeaders(HttpServletRequest request) {
+        System.out.println("--- Headers - start ---");
+
+        request.getHeaderNames().asIterator()
+                .forEachRemaining(headerName -> System.out.println(headerName + " : " + request.getHeader(headerName)));
+
+        System.out.println("--- Headers - end ---\n");
+    }
+
 }
