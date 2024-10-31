@@ -17,6 +17,7 @@ public class RequestHeaderServlet extends HttpServlet {
         printStartLine(request);
         printHeaders(request);
         printHeaderUtils(request);
+        printNetworkConnection(request);
     }
 
     private void printStartLine(HttpServletRequest request) {
@@ -71,6 +72,23 @@ public class RequestHeaderServlet extends HttpServlet {
         System.out.println("request.getCharacterEncoding() = " + request.getCharacterEncoding());
 
         System.out.println("--- Header - end ---\n");
+    }
+
+    private void printNetworkConnection(HttpServletRequest request) {
+        System.out.println("--- Network connection - start ---");
+
+        System.out.println("[Remote]");
+        System.out.println("request.getRemoteHost() = " + request.getRemoteHost());
+        System.out.println("request.getRemoteAddr() = " + request.getRemoteAddr());
+        System.out.println("request.getRemotePort() = " + request.getRemotePort());
+        System.out.println();
+
+        System.out.println("[Local]");
+        System.out.println("request.getLocalName() = " + request.getLocalName());
+        System.out.println("request.getLocalAddr() = " + request.getLocalAddr());
+        System.out.println("request.getLocalPort() = " + request.getLocalPort());
+
+        System.out.println("--- Network connection - end ---\n");
     }
 
 }
