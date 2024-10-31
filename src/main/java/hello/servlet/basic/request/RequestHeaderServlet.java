@@ -42,7 +42,7 @@ public class RequestHeaderServlet extends HttpServlet {
     }
 
     private void printHeaderUtils(HttpServletRequest request) {
-        System.out.println("--- Header - start ---");
+        System.out.println("--- Headers - start ---");
 
         System.out.println("[Host]");
         System.out.println("request.getServerName() = " + request.getServerName());
@@ -71,7 +71,7 @@ public class RequestHeaderServlet extends HttpServlet {
         System.out.println("request.getContentLength() = " + request.getContentLength());
         System.out.println("request.getCharacterEncoding() = " + request.getCharacterEncoding());
 
-        System.out.println("--- Header - end ---\n");
+        System.out.println("--- Headers - end ---\n");
     }
 
     private void printNetworkConnection(HttpServletRequest request) {
