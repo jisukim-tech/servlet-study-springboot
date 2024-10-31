@@ -2,6 +2,7 @@ package hello.servlet.basic.request;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ public class RequestHeaderServlet extends HttpServlet {
             throws ServletException, IOException {
         printStartLine(request);
         printHeaders(request);
+        printHeaderUtils(request);
     }
 
     private void printStartLine(HttpServletRequest request) {
@@ -36,6 +38,39 @@ public class RequestHeaderServlet extends HttpServlet {
                 .forEachRemaining(headerName -> System.out.println(headerName + " : " + request.getHeader(headerName)));
 
         System.out.println("--- Headers - end ---\n");
+    }
+
+    private void printHeaderUtils(HttpServletRequest request) {
+        System.out.println("--- Header - start ---");
+
+        System.out.println("[Host]");
+        System.out.println("request.getServerName() = " + request.getServerName());
+        System.out.println("request.getServerPort() = " + request.getServerPort());
+        System.out.println();
+
+        System.out.println("[Accept-Language]");
+
+        request.getLocales().asIterator()
+                .forEachRemaining(locale -> System.out.println("locale = " + locale));
+
+        System.out.println();
+
+        System.out.println("[Cookie]");
+
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                System.out.println(cookie.getName() + " : " + cookie.getValue());
+            }
+        }
+
+        System.out.println();
+
+        System.out.println("[Content]");
+        System.out.println("request.getContentType() = " + request.getContentType());
+        System.out.println("request.getContentLength() = " + request.getContentLength());
+        System.out.println("request.getCharacterEncoding() = " + request.getCharacterEncoding());
+
+        System.out.println("--- Header - end ---\n");
     }
 
 }
