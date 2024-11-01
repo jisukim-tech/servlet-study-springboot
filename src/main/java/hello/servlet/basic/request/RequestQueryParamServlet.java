@@ -15,6 +15,7 @@ public class RequestQueryParamServlet extends HttpServlet {
             throws ServletException, IOException {
         printTotalParam(request);
         printSingleParam(request);
+        printDuplicateParam(request);
     }
 
     private void printTotalParam(HttpServletRequest request) {
@@ -31,6 +32,18 @@ public class RequestQueryParamServlet extends HttpServlet {
         System.out.println("request.getParameter(\"username\") = " + request.getParameter("username"));
         System.out.println("request.getParameter(\"age\") = " + request.getParameter("age"));
         System.out.println("--- Single parameter - end ---\n");
+    }
+
+    private void printDuplicateParam(HttpServletRequest request) {
+        System.out.println("--- Duplicate parameters - start ---");
+
+        String[] userNames = request.getParameterValues("username");
+
+        for (String userName : userNames) {
+            System.out.println("userName = " + userName);
+        }
+
+        System.out.println("--- Duplicate parameters - end ---\n");
     }
 
 }
