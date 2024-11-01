@@ -14,6 +14,7 @@ public class RequestQueryParamServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         printTotalParam(request);
+        printSingleParam(request);
     }
 
     private void printTotalParam(HttpServletRequest request) {
@@ -24,5 +25,12 @@ public class RequestQueryParamServlet extends HttpServlet {
 
         System.out.println("--- Total parameters - end ---\n");
     }
-    
+
+    private void printSingleParam(HttpServletRequest request) {
+        System.out.println("--- Single parameter - start ---");
+        System.out.println("request.getParameter(\"username\") = " + request.getParameter("username"));
+        System.out.println("request.getParameter(\"age\") = " + request.getParameter("age"));
+        System.out.println("--- Single parameter - end ---\n");
+    }
+
 }
