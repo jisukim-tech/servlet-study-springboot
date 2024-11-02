@@ -15,17 +15,21 @@ public class ResponseHeaderServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // status line
         response.setStatus(HttpServletResponse.SC_OK);
 
+        // response headers
         response.setHeader("Content-Type", "text/plain;charset=utf-8");
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Custom-Header", "hello");
 
+        // header convenient methods
         setContent(response);
         setCookie(response);
         setRedirect(response);
 
+        // message body
         PrintWriter writer = response.getWriter();
         writer.println("ok");
     }
@@ -38,11 +42,13 @@ public class ResponseHeaderServlet extends HttpServlet {
 
     private void setCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie("customCookie", "good");
-        cookie.setMaxAge(600);
+        cookie.setMaxAge(600); // 600 seconds
         response.addCookie(cookie);
     }
 
     private void setRedirect(HttpServletResponse response) throws IOException {
+        // response.setStatus(HttpServletResponse.SC_FOUND);
+        // response.setHeader("Location", "/basic/hello-form.html");
         response.sendRedirect("/basic/hello-form.html");
     }
 
