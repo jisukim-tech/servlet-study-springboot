@@ -24,6 +24,7 @@ public class ResponseHeaderServlet extends HttpServlet {
 
         setContent(response);
         setCookie(response);
+        setRedirect(response);
 
         PrintWriter writer = response.getWriter();
         writer.println("ok");
@@ -39,6 +40,10 @@ public class ResponseHeaderServlet extends HttpServlet {
         Cookie cookie = new Cookie("customCookie", "good");
         cookie.setMaxAge(600);
         response.addCookie(cookie);
+    }
+
+    private void setRedirect(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/basic/hello-form.html");
     }
 
 }
