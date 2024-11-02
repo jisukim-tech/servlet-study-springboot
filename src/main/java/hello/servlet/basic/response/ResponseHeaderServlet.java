@@ -2,6 +2,7 @@ package hello.servlet.basic.response;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.setHeader("Custom-Header", "hello");
 
         setContent(response);
+        setCookie(response);
 
         PrintWriter writer = response.getWriter();
         writer.println("ok");
@@ -31,6 +33,12 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
         response.setContentLength(2);
+    }
+
+    private void setCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("customCookie", "good");
+        cookie.setMaxAge(600);
+        response.addCookie(cookie);
     }
 
 }
