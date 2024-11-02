@@ -37,7 +37,7 @@ public class ResponseHeaderServlet extends HttpServlet {
     private void setContent(HttpServletResponse response) {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
-        response.setContentLength(2);
+        response.setContentLength(3);
     }
 
     private void setCookie(HttpServletResponse response) {
